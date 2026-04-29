@@ -1,7 +1,7 @@
 // const botones = document.querySelectorAll(".button-apply-job")
 
-
 /*Aqui estamos recorriendo todos los botones con un forEach y añadiendo un evento de escucha a cada uno de ellos
+
 botones.forEach (boton => {
     boton.addEventListener("click", function() {
         //esto cambio el valor del texto del botón y lo deshabilita
@@ -10,18 +10,68 @@ botones.forEach (boton => {
         //esto es una función que añade una clase CSS al botón
         boton.classList.add("is-applied")
     })
-    
 })
 */ 
 
+/* A continuación, implementamos el mismo comportamiento pero usando event delegation. 
+Esto significa que en lugar de añadir un event listener a cada botón individualmente,
+añadimos un solo event listener al contenedor padre que contiene todos los botones. 
+Cuando se hace clic en cualquier botón dentro de este contenedor, el evento se propaga hacia arriba 
+y es capturado por el event listener del contenedor. 
+Luego, verificamos si el elemento que disparó el evento es un botón de aplicar trabajo y ejecutamos 
+la lógica correspondiente.  Esto es más eficiente, especialmente cuando hay muchos botones o cuando 
+los botones pueden ser añadidos o eliminados dinámicamente. */
 
-const jobListingsContent = document.querySelector(".jobs-listings")
+// const jobListingsContent = document.querySelector(".jobs-listings")
 
-jobListingsContent.addEventListener('click', function(event) {
-    const element = event.target
-    if(element.classList.contains("button-apply-job")) {
-        element.textContent = ("¡Aplicado!")
-        element.disabled = true
-        element.classList.add("is-applied")
-    }
-})
+// jobListingsContent.addEventListener('click', function(event) {
+//     const element = event.target
+//     if(element.classList.contains("button-apply-job")) {
+//         element.textContent = ("¡Aplicado!")
+//         element.disabled = true
+//         element.classList.add("is-applied")
+//     }
+// })
+
+/* evento cambio de filtro y mostrar resultados nuevos en jobs-listing*/
+
+
+
+// const searchFiltersContent = document.querySelector(".search-filters")
+
+// searchFiltersContent.addEventListener("change", function(event){
+//     const element = event.target
+//     /* tecnología */
+//     if (element.id === "filter-technology") {
+//         const tech = element.value
+//     }
+//     /*Ubicacion*/
+//     else if(element.id.contains("filter-location")){
+//         const location = element.value
+//         showResults(location)
+
+//     }
+//     /*experiencia*/
+//     else{
+
+//     }
+    
+// })
+
+// /*Funcion para cambiar los resultados de busqueda mostrados(poniendo en invisible los que no
+// contengan la palabra clave del select*/
+
+// function showResults (value){
+//     const jobsResults = document.querySelectorAll(".job-result")
+
+//     jobsResults.forEach(job =>{
+//         if(!job.small.contains(value)){
+//             job.classList.add("hidden")
+//         }
+//         else{
+//             job.classList.remove("hidden")
+//         }
+//     })
+
+// }
+

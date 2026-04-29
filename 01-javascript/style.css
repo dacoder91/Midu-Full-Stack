@@ -418,8 +418,6 @@ select{
     }
   }
 
-
-
 }
 
 /* Estilo para la paginación */
@@ -464,3 +462,6 @@ select{
     pointer-events: none;
   }
 }
+
+/*para no mostrar algo*/
+.hidden { display: none; }
