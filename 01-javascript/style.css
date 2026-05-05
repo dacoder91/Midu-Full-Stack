@@ -370,10 +370,12 @@ select{
     padding: 0.25rem 0.5rem;
   }
 
+  /* Estilo para los filtros de búsqueda de empleos */
   .search-filters{
     display: flex;
     flex-wrap: wrap; /* Permite que los elementos hijos se envuelvan a la siguiente línea si no caben en una sola línea */ 
     margin-top: 0.5rem;   
+    margin-bottom: 0.5rem;
   }
 
   form{
@@ -464,4 +466,4 @@ select{
 }
 
 /*para no mostrar algo*/
-.hidden { display: none; }
+.job-result.hidden { display: none; }
