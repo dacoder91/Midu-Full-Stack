@@ -1,6 +1,6 @@
-const botones = document.querySelectorAll(".button-apply-job")
-
+/*
 //  1º Aqui estamos recorriendo todos los botones con un forEach y añadiendo un evento de escucha a cada uno de ellos
+const botones = document.querySelectorAll(".button-apply-job")
 
 botones.forEach (boton => {
     boton.addEventListener("click", function() {
@@ -11,7 +11,7 @@ botones.forEach (boton => {
         boton.classList.add("is-applied")
     })
 })
-
+*/
 
 /* 2º A continuación, implementamos el mismo comportamiento pero usando event delegation. 
 Esto significa que en lugar de añadir un event listener a cada botón individualmente,
@@ -33,47 +33,9 @@ jobListingsContent.addEventListener('click', function(event) {
     }
 })
 
-/* evento cambio de filtro y mostrar resultados nuevos en jobs-listing*/
-
-const filter = document.querySelector("#filter-location")
-const mensaje = document.querySelector("#filter-selected-value")
-
-filter.addEventListener("change", function(){
-    const selectedValue = filter.value
-
-    if(selectedValue){
-        mensaje.textContent = `Filtro seleccionado: ${selectedValue}`
-    }else{
-        mensaje.textContent = ""
-    }
-
-    // aquí buscamos todos los empleos y vemos cuales cumplen los filtros, para hidden el resto.
-    const empleos = document.querySelectorAll(".job-result")
-    // recorremos cada empleo y comprobamos si el texto del empleo incluye el valor seleccionado del filtro
-    empleos.forEach(empleo =>{
-        const texto = empleo.textContent.toLowerCase()
-        // si el valor seleccionado no está vacío y el texto del empleo no incluye el valor seleccionado, ocultamos el empleo
-        if(selectedValue && !texto.includes(selectedValue)){
-            empleo.classList.add("hidden")
-            // si el valor seleccionado está vacío o el texto del empleo incluye el valor seleccionado, mostramos el empleo
-        }else{
-            empleo.classList.remove("hidden")
-        }
-    })  
-})
+/*otras funciones o formas */
 
 /* Ahora buscar todos los empleos y  ver cuales cumplen los filtros, para hidden el resto. */
-
-
-
-
-
-
-
-
-
-
-
 
 /* evento cambio de filtro y mostrar resultados nuevos en jobs-listing*/
 
@@ -114,3 +76,22 @@ filter.addEventListener("change", function(){
 //     })
 
 // }
+
+
+
+//Diferentes EVENTOS
+// const inputNombre = document.querySelector("#empleos-search-input")
+
+// inputNombre.addEventListener("input", function(){
+//     console.log(inputNombre.value)
+// })
+
+// inputNombre.addEventListener("blur", function(){
+//     console.log("Blur del buscador")
+// })
+
+// el evento submit se dispara cuando se envía un formulario, en este caso el formulario del buscador, entre
+// inputNombre.addEventListener("submit", function(event){
+//     console.log("Submit del buscador")
+//     event.preventDefault() // esto evita que se recargue la página al hacer submit
+// })
