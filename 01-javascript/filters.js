@@ -1,12 +1,8 @@
-
 /* evento cambio de filtro y mostrar resultados nuevos en jobs-listing*/
-
 // Aquí seleccionamos el select del filtro de ubicación y el elemento donde mostraremos el mensaje del filtro seleccionado.
 const filter = document.querySelector("#filter-location")
 // Aquí seleccionamos el elemento donde mostraremos el mensaje del filtro seleccionado.
 const mensaje = document.querySelector("#filter-selected-value")
-
-
 // Aquí añadimos un evento de escucha al select del filtro de ubicación.
 filter.addEventListener("change", function(){
 
@@ -34,7 +30,49 @@ filter.addEventListener("change", function(){
     })
 })
 
-// MODO CON TODOS LOS FILTROS
+//Experiencia filter 
+const expFilter = document.querySelector("#filter-experience-level")
+
+expFilter.addEventListener("change", function(){
+
+    const jobs = document.querySelectorAll(".job-listing-card")
+
+    const selectedValue = expFilter.value
+    selectedValue ? mensaje.textContent = `Has seleccionado: ${selectedValue}` : mensaje.textContent = ""
+
+    jobs.forEach(job =>{
+        const nivel = job.dataset.nivel
+
+        const isShown = selectedValue === "" || selectedValue === nivel
+
+        job.classList.toggle("is-hidden", isShown === false)
+    })
+    }
+)
+
+
+//filtro tecnología
+const techFilter = document.querySelector("#filter-technology")
+
+techFilter.addEventListener("change", function(){
+
+    const jobs = document.querySelectorAll(".job-listing-card")
+
+    const selectedValue = techFilter.value
+    selectedValue ? mensaje.textContent = `Has seleccionado: ${selectedValue}` : mensaje.textContent = ""
+
+    jobs.forEach(job =>{
+        const technology = job.dataset.technology
+
+        const isShown = selectedValue === "" || (Array.isArray(technology) ? technology.includes(selectedValue) : technology === selectedValue)
+        //aqui hemos comprobado: si el valor seleccionado es una cadena vacía (lo que significa que no se ha seleccionado ningún filtro), o si el valor seleccionado está incluido en el array de tecnologías del empleo (en caso de que sea un array), o si el valor seleccionado es igual a la tecnología del empleo (en caso de que sea una cadena). Esto nos permite manejar tanto casos donde la tecnología es un array como casos donde es una cadena.
+        job.classList.toggle("is-hidden", isShown === false)
+    })
+    }
+)
+
+
+// MODO CON TODOS LOS FILTROS(falta repasar y corregir errores)
 
 /* evento cambio de filtro y mostrar resultados nuevos en jobs-listing*/
 

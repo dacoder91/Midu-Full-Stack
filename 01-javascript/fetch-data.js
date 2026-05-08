@@ -20,6 +20,10 @@ fetch("./data.json") // fetch devuelve una promesa, por lo que usamos .then para
         article.dataset.modalidad = job.data.modalidad 
         article.dataset.nivel = job.data.nivel
         article.dataset.technology = job.data.technology
+        article.dataset.titulo = job.titulo
+        article.dataset.empresa = job.empresa
+        article.dataset.ubicacion = job.ubicacion
+        
         //
         article. innerHTML = `<div>
                             <h3>${job.titulo}</h3>
