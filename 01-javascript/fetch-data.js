@@ -1,22 +1,36 @@
 /*Con fetch cogemos datos de data.json y creamos articles en jobs-listing con esos datos. 
 Esto es para simular una búsqueda de empleos que devuelve resultados dinámicos. */
 
-const loading = document.querySelector('#jobs-loading') // esto es para mostrar un mensaje de carga mientras se obtienen los datos del JSON, para ver la asincronía en acción.
+// fetch-data.js
 
+// 1. Importamos la función que acabamos de crear
+import { setupPagination } from './dinamic-pagination.js';
+
+const loading = document.querySelector('#jobs-loading') 
 const container = document.querySelector(".jobs-listings")
-fetch("./data.json") // fetch devuelve una promesa, por lo que usamos .then para manejar la respuesta.
-.then((response) => response.json()) // aquí convertimos la respuesta a formato JSON, lo que también devuelve una promesa, por eso usamos otro .then
-.then((jobs) => {
-    jobs.forEach(job => { // aquí recorremos cada empleo del array de empleos que hemos obtenido del JSON
-        
-           //Creamos un loading por si tarda en cargar, para ver la asicronia y luego eliminamos
-        if(loading) loading.remove() // esto es para eliminar el mensaje de carga una vez que se han obtenido los datos del JSON, para ver la asincronía en acción.
-        if(job.length === 0) container.innerHTML = "<p>No se han encontrado empleos</p>" // esto es para mostrar un mensaje si no se han encontrado empleos, aunque en este caso no se va a cumplir porque el JSON tiene datos, pero es una buena práctica tenerlo por si acaso.
 
-        const article = document.createElement('article') // esto es para crear un nuevo elemento HTML del tipo "article", que es el contenedor que usaremos para mostrar cada empleo en la página.
-        article.className = 'job-listing-card' // esto es para añadir la clase CSS al artículo, lo que le dará el estilo adecuado.
+fetch("./data.json") 
+.then((response) => response.json()) 
+.then((jobs) => {
+    if(loading) loading.remove() 
+    if(jobs.length === 0) {
+        container.innerHTML = "<p>No se han encontrado empleos</p>" 
+        return;
+    }
+
+    // 2. Configuramos las variables para la paginación
+    const RESULTS_PER_PAGE = 3
+    const currentPage = 1
+
+    // 3. LLAMAMOS A LA FUNCIÓN IMPORTADA
+    // Le pasamos todos los empleos, y nos devuelve solo los 3 de la página 1
+    const jobsToShow = setupPagination(jobs, RESULTS_PER_PAGE, currentPage)
+
+    // 4. Recorremos "jobsToShow" en lugar del "jobs" original
+    jobsToShow.forEach(job => { 
+        const article = document.createElement('article') 
+        article.className = 'job-listing-card' 
         
-        // aquí añadimos los atributos de datos al artículo para poder filtrarlos después
         article.dataset.modalidad = job.data.modalidad 
         article.dataset.nivel = job.data.nivel
         article.dataset.technology = job.data.technology
@@ -24,13 +38,21 @@ fetch("./data.json") // fetch devuelve una promesa, por lo que usamos .then para
         article.dataset.empresa = job.empresa
         article.dataset.ubicacion = job.ubicacion
         
-        //
-        article. innerHTML = `<div>
-                            <h3>${job.titulo}</h3>
-                            <small>${job.empresa}- ${job.ubicacion}</small>
-                            <p>${job.descripcion}</p>
-                        </div>
-                        <button class ="button-apply-job">Aplicar</button>`
+        article.innerHTML = `
+            <div>
+                <h3>${job.titulo}</h3>
+                <small>${job.empresa} - ${job.ubicacion}</small>
+                <p>${job.descripcion}</p>
+            </div>
+            <button class ="button-apply-job">Aplicar</button>
+        `
+        container.appendChild(article) 
+    })
+})
+.catch((error) => {
+    if(loading) loading.textContent = "Error al cargar los empleos" 
+    console.error(error) 
+})
 
     //version para evitar virus o traer código malicioso del JSON, aunque en este caso no se va a cumplir porque el JSON es seguro, pero es una buena práctica tenerlo por si acaso.
         // const article = document.createElement('article')
@@ -57,11 +79,11 @@ fetch("./data.json") // fetch devuelve una promesa, por lo que usamos .then para
     // esto es para añadir el artículo al contenedor principal de la página, lo que hará que se muestre en la lista de empleos.
         
     
-        container.appendChild(article) // esto es para añadir el artículo al contenedor principal de la página, lo que hará que se muestre en la lista de empleos.
-    })
-    .catch((error) => {
-        if(loading) loading.textContent = "Error al cargar los empleos" // esto es para mostrar un mensaje de error si no se han podido obtener los datos del JSON, para ver la asincronía en acción.
-        console.error(error) // esto es para mostrar el error en la consola del navegador, lo que puede ser útil para depurar el código.
-    })
+//         container.appendChild(article) // esto es para añadir el artículo al contenedor principal de la página, lo que hará que se muestre en la lista de empleos.
+//     })
+//     .catch((error) => {
+//         if(loading) loading.textContent = "Error al cargar los empleos" // esto es para mostrar un mensaje de error si no se han podido obtener los datos del JSON, para ver la asincronía en acción.
+//         console.error(error) // esto es para mostrar el error en la consola del navegador, lo que puede ser útil para depurar el código.
+//     })
     
-})
+// })
