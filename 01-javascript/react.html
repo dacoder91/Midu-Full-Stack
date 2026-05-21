@@ -1,0 +1,97 @@
+<html lang="es">
+    <head>
+        <title>DevJobs - Empleos</title>
+        <meta charset="UTF-8" />    <!-- Configuración de codificación de caracteres -->
+        <meta name="description" content="Listado con empleos y filtros para encontrar el trabajo de tus sueños.." /> <!-- Descripción de la página -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <!-- Para hacer responsive la web-->
+        
+        <link rel="stylesheet" href="./style.css" /> <!-- Enlazar el archivo CSS externo -->
+
+        <script type="module">
+            import React from "https://esm.sh/react?dev"; // Importar React desde un CDN,cdn es
+            import ReactDOM from "https://esm.sh/react-dom/client?dev"; // ayuda a renderizarse en diferentes 
+            // entornos, como el navegador o el servidor. ReactDOM se utiliza para renderizar componentes
+            //  React en el DOM del navegador.
+            
+            window.React = React; // Asignar React al objeto global window para que esté disponible en el ámbito global.
+            window.ReactDOM = ReactDOM; // Asignar ReactDOM al objeto global window para que esté disponible en el ámbito global.
+        </script>
+
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js">
+        </script>
+
+        <script type="text/babel">
+        const empleos = [
+            { titulo: 'Frontend Developer', empresa: 'TechCorp', ubicacion: 'Madrid' },
+            { titulo: 'Backend Developer', empresa: 'CodeLabs', ubicacion: 'Barcelona' },
+            { titulo: 'Full Stack Developer', empresa: 'DevStudio', ubicacion: 'Valencia' },
+        ]
+
+        const app = (
+            <div>
+                <h1>DevJobs - Ofertas de empleo</h1>
+                <p>Hay {empleos.length} ofertas disponibles</p>
+
+                {/* Recorremos el array con .map() */}
+                {empleos.map((empleo, index) => (
+                    <article className="job-listing-card" key={index}>
+                        <h3>{empleo.titulo}</h3>
+                        <small>
+                            {empleo.empresa} | {empleo.ubicacion}
+                        </small>
+                        <button className="button-apply-job">Aplicar</button>
+                    </article>
+                ))}
+            </div>
+        )
+
+        window.onload = () => {
+            const rootEl = document.querySelector('#root')
+            const root = ReactDOM.createRoot(rootEl)
+            root.render(app)
+        }
+        </script>
+
+    </head>
+
+    <body>
+
+        <header>
+            <h1>
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                    DevJobs
+                </h1>
+               <nav>
+                <!-- <a href="">
+                    Inicio
+                    </a> -->
+                    <a href="">Empleos</a>
+                </nav>
+                <div>
+                    <devjobs-avatar username="dacoder91"></devjobs-avatar>
+                </div>
+
+        </header>
+
+
+        <main>
+            <section class="jobs-search">
+                <h1>React, primeros pasos</h1>
+
+                <div id="root">
+
+                </div>
+                </section>
+        </main>
+
+        <footer style="padding-bottom: 2000px;">
+            <small>&copy; 2025 DevJobs. Todos los derechos reservados.</small>
+        </footer>
+
+    </body>
+
+</html>

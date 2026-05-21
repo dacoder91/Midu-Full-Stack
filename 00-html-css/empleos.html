@@ -11,7 +11,14 @@
     <body>
 
         <header>
-            <h1>Devjobs - Empleos</h1>
+            <h1>
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                    DevJobs
+                </h1>
             <nav>
                 <a href="index.html">Inicio</a>
             </nav>
@@ -36,7 +43,7 @@
                         <input required type="text" id="empleos-search-input" placeholder="Buscar trabajos,empresas o habilidades"/>
                     </div>
                 
-                    <div id="search-filters">
+                    <div class="search-filters">
                         <select name="technology" id="filter-technology">
                             <option value="">Tecnología</option>
                             <optgroup label="Tecnologías populares">
@@ -77,7 +84,85 @@
                 <span id="filter-selected-value"></span> <!-- NOSE PARA QUE LO USA AUN MIDU-->
             </section>
 
-            <h2>Resultados de la búsqueda</h2>
+            <section>
+      <h2>Resultados de búsqueda</h2>
+
+      <div class="jobs-listings">
+        <!-- Aquí se insertan los empleos dinámicamente, hasta hacer javascript lo ponemos manual -->
+        <article>
+            <div>
+                <h3>Desarrollador Frontend</h3>
+                <small>Empresa XYZ - Remoto</small>
+                <p>Buscamos un desarrollador frontend con experiencia en React y CSS para un
+            </div>
+            <button>Aplicar</button>
+        </article>
+        <article>
+            <div>
+                <h3>Desarrollador Backend</h3>
+                <small>Empresa ABC - Ciudad de México</small>
+                <p>Se requiere un desarrollador backend con conocimientos en Node.js y bases de datos SQL.</p>
+            </div>
+            <button>Aplicar</button>
+        </article>
+        <article>
+            <div>
+                <h3>Ingeniero de Software Full Stack</h3>
+                <small>Startup 123 - Guadalajara</small>
+                <p>Únete a nuestro equipo como ingeniero de software full stack con experiencia en
+                    JavaScript y Python.</p>
+            </div>
+            <button>Aplicar</button>
+        </article>  
+        <article>
+            <div>
+                <h3>Desarrollador Frontend</h3>
+                <small>Empresa XYZ - Remoto</small>
+                <p>Buscamos un desarrollador frontend con experiencia en React y CSS para un
+            </div>
+            <button>Aplicar</button>
+        </article>
+        <article>
+            <div>
+                <h3>Desarrollador Backend</h3>
+                <small>Empresa ABC - Ciudad de México</small>
+                <p>Se requiere un desarrollador backend con conocimientos en Node.js y bases de datos SQL.</p>
+            </div>
+            <button>Aplicar</button>
+        </article>
+        <article>
+            <div>
+                <h3>Ingeniero de Software Full Stack</h3>
+                <small>Startup 123 - Guadalajara</small>
+                <p>Únete a nuestro equipo como ingeniero de software full stack con experiencia en
+                    JavaScript y Python.</p>
+            </div>
+            <button>Aplicar</button>
+        </article>  
+
+
+
+      </div>
+
+      <nav class="pagination">
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M15 6l-6 6l6 6" />
+          </svg></a>
+        <a class="is-active" href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 6l6 6l-6 6" />
+          </svg></a>
+      </nav>
+    </section>
             
         </main>
 

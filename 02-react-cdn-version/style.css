@@ -370,10 +370,12 @@ select{
     padding: 0.25rem 0.5rem;
   }
 
+  /* Estilo para los filtros de búsqueda de empleos */
   .search-filters{
     display: flex;
     flex-wrap: wrap; /* Permite que los elementos hijos se envuelvan a la siguiente línea si no caben en una sola línea */ 
     margin-top: 0.5rem;   
+    margin-bottom: 0.5rem;
   }
 
   form{
@@ -388,12 +390,12 @@ select{
   }
 }
 
-/* Estilo para la lista de empleos */
+/* Estilo para la sección de listados de empleos */
 .jobs-listings{
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
 
-  article{
+  .job-listing-card {
     background: none;
     box-shadow: none;
     border-radius: 0;
@@ -417,16 +419,23 @@ select{
     &:last-child{
       border-bottom: none;
     }
+    /*al aplicarlo a un elemento, este se ocultará completamente, 
+    se pone & porque se refiere al elemento padre, en este caso a .job-listing-card*/
+    &.is-hidden{
+      display: none;
+    }
   }
+
 }
 
-.pagination{
+/* Estilo para la paginación */
+.pagination {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
   margin-block: 2rem;
 
-  a{
+  a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -435,22 +444,29 @@ select{
     text-decoration: none;
     color: var(--text-muted);
     border-radius: 0.375rem;
-    transition: all 0.2s;
+    transition: all .3s;
 
-    &:hover {
+    &:hover, &:focus {
       background-color: #fff;
     }
 
-    &:active{
-      transform: scale(0.9);
+    &:active {
+      transform: scale(0.90);
     }
 
-    &.is-active{
+    &.is-active {
       background-color: var(--primary-light);
       color: white;
-      font-weight: 700;
-      pointer-events: none; /* Desactiva los eventos del puntero, es decir, no se puede hacer clic en el enlace */
+      pointer-events: none;
     }
-
   }
 }
+
+.button-apply-job{
+  background-color: #0a3d66;
+
+  &.is-applied{
+    background-color: #099252;
+    pointer-events: none;
+  }
+} 
